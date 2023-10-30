@@ -36,7 +36,7 @@ function comprobar_usuario($nombre, $clave)
 	$query = "SELECT clave FROM usuarios where nombre = '$nombre'";
 	$claveBD = $bd->query($query);
 
-
+	//clave: 1234
 	if ($claveBD->rowCount()) {
 		foreach ($claveBD as $row) {
 
@@ -44,18 +44,16 @@ function comprobar_usuario($nombre, $clave)
 				$ins = "select clave, nombre from usuarios where nombre = '$nombre'";
 				$resul = $bd->query($ins);
 
-
 				if ($resul->rowCount() === 1) {
 					return $resul->fetch();
 				} else {
 					return FALSE;
 				}
+			} else {
+				return false;
 			}
 		}
+	} else {
+		return false;
 	}
 }
-
-
-
-
-
